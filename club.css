@@ -1,0 +1,320 @@
+/*Montez‑Regular*/
+@font-face {
+    font-family: 'Montez';
+    src: url('font/Montez-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+/*PressStart2P‑Regular*/
+@font-face {
+    font-family: 'Press Start 2P';
+    src: url('font/PressStart2P-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "见物社手写体"; /* 这里是字体内置名字，可以中文 */
+    src: url("font/jianwu-font.ttf") format("truetype"); /* 这里url路径必须英文文件名！！*/
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "meishi-font"; 
+    src: url("font/meishi/meishi-font.ttf") format("truetype"); 
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "EarlySummerSerif-Light";
+    src: url("font/zhi/EarlySummerSerif-Light.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "CaslonAntT";
+    src: url("font/kong/CaslonAntT.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'OpenSansVariable';
+    src: url('font/OpenSans-VariableFont_wdth,wght.ttf') format('truetype');
+    font-weight: 100 900; /* 可变字体支持的字重范围 */
+    font-stretch: 75% 125%; /* 宽度范围 wdth */
+    font-style: normal;
+}
+/* 英文专用class，只给英文文字套用 */
+.en-font {
+    font-family: 'OpenSansVariable', sans-serif;
+    font-weight: 400;
+}
+
+/* ========== 直接定位：CHROMA社团标题 ========== */
+.club-card:nth-child(2) .club-name {
+    font-family: 'Montez', cursive;
+    font-size: 26px;
+    font-weight: normal !important; /* 重点！关掉bold，花体一加粗就失效！ */
+}
+
+/* nth‑child(1) → 第一个社团卡片：止 */
+.club-card:nth-child(1) .club-name {
+    font-family: 'EarlySummerSerif-Light', sans-serif;
+    font-weight: normal !important;
+    font-size: 26px;
+}
+/*第3个社团：空房间，字体不动，跳过*/
+.club-card:nth-child(3) .club-name {
+    font-family: 'CaslonAntT', sans-serif;
+    font-weight: normal !important;
+    font-size: 26px;
+}
+/* 给html标签手动加 class="food‑title"，避开nth-child计数出错的坑！！ */
+.club-card:nth-child(4) .club-name {
+    font-family: 'meishi-font', sans-serif;
+    font-weight: normal !important;
+    font-size: 26px;
+}
+/* nth‑child(5) →第五个社团卡片：见物社 */
+.club-card:nth-child(5) .club-name {
+    font-family: '见物社手写体', sans-serif;
+    font-weight: normal !important;
+    font-size: 26px;
+}
+
+/* ========== 直接定位：FLUX 404社团标题（第6张卡片） ========== */
+.club-card:nth-child(6) .club-name {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 18px;
+    font-weight: normal !important; /*像素字体禁止加粗*/
+}
+
+.club-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("image/club_bg.png");
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 80px 40px;
+    font-family: "Comic Sans MS", cursive;
+    color: #917B5A;
+    cursor: url("image/cursor.png"),auto;
+}
+
+
+/* 右上角用户头像用户名，和index页面完全一致 */
+.user-header {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 18px;
+    color: #4b382e;
+}
+
+.avatar-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #4b382e;
+    background-image: url("image/profile.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 返回箭头 */
+.back-link {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.back-arrow {
+    width: 100px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+    .back-arrow:hover {
+        transform: scale(1.15);
+    }
+
+/* 社团卡片外层容器 */
+.club-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+
+/* 单张社团卡片 */
+.club-card {
+    background-color: #ffffff;
+    border: 3px solid #917B5A;
+    border-radius: 12px;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    /* hover的过渡 */
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    /* 入场初始状态：透明，往下挪50px */
+    opacity: 0;
+    transform: translateY(50px);
+    /* ✅新增：入场动画的过渡时长 */
+    transition-property: opacity, transform;
+    transition-duration: 0.7s;
+    transition-timing-function: ease-out;
+}
+
+    .club-card.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* hover放大，保留原有 */
+    .club-card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(145, 123, 90, 0.25);
+    }
+
+
+/* 左侧社团图片 */
+.club-img {
+    width: 160px;
+    flex-shrink: 0;
+    animation: floatHeart 3s ease-in-out infinite;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+/* 右侧文字区域 */
+.club-text {
+    flex: 1;
+    line-height: 1.7;
+    font-size: 18px;
+}
+
+.club-title-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.club-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.club-desc {
+    text-align: center;
+}
+
+.club-note {
+    text-align: center;
+}
+
+/* ===== 嫩粉色滚动条，加宽到16px，和主页保持一致 ===== */
+::-webkit-scrollbar {
+    width: 16px;
+}
+
+::-webkit-scrollbar-track {
+    background: #fff7f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #fce0e8;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #f9cbda;
+    }
+
+html {
+    scrollbar-color: #fce0e8 #fff7f9;
+    scrollbar-width: thin;
+}
+
+/*====学生ID弹窗样式（和index保持完全一致）====*/
+.id-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(50, 35, 25, 0.65);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+    .id-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.id-card-wrap {
+    transform: scale(0.6);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.3, 1.8, 0.5, 1), opacity 0.3s ease;
+}
+
+.id-modal.active .id-card-wrap {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.id-card {
+    max-width: 640px;
+    width: 86vw;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+    .id-card:hover {
+        transform: translateY(-4px);
+        transition: transform 0.25s ease;
+    }
+
+/* 移动端简单适配：屏幕小的时候卡片变成上下排布 */
+@media (max-width:768px) {
+    .club-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .club-img {
+        width: 120px;
+    }
+}

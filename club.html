@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the club</title>
+    <link rel="stylesheet" href="club.css">
+</head>
+<body>
+    <!--右上角用户头像+名字（从index复制过来）-->
+    <div class="user-header">
+        <div class="avatar-icon"></div>
+        <span id="showUsername"></span>
+    </div>
+    <!-- 返回主页箭头 -->
+    <a href="index.html" class="back-link">
+        <img class="back-arrow" src="image/back.png" alt="返回主页">
+    </a>
+    <div class="club-container">
+        <!-- 1.击剑社 -->
+        <div class="club-card">
+            <img class="club-img" src="image/zhi.png" alt="社团图标">
+            <div class="club-text">
+                <div class="club-title-row">
+                    <span class="club-name">「止」</span>
+                    <span class="club-category">击剑</span>
+                </div>
+                <div class="club-desc">
+                    <p>招新<span class="en-font"> ing</span></p>
+                    <p>为什么是「止」?</p>
+                    <p>是在出剑之前，知道自己为何向前。</p>
+                </div>
+            </div>
+        </div>
+        <!-- 2.绘画社 CHROMA -->
+        <div class="club-card">
+            <img class="club-img" src="image/chroma.png" alt="社团图标">
+            <div class="club-text">
+                <div class="club-title-row">
+                    <span class="club-name font-montez">CHROMA</span>
+                    <span class="club-category">绘画</span>
+                </div>
+                <div class="club-desc">
+                    <p>我相信</p>
+                    <p>不论你已经画了很多年</p>
+                    <p>或只是偶尔想拿起画笔</p>
+                    <p>这里都有属于你的色彩</p>
+                    <br>
+                    <p><span class="en-font">Come and paint your own color.</span></p>
+                </div>
+            </div>
+        </div>
+        <!--3.舞台剧 空房间 -->
+        <div class="club-card">
+            <img class="club-img" src="image/kong.png" alt="社团图标">
+            <div class="club-text">
+                <div class="club-title-row">
+                    <span class="club-name">空房间</span>
+                    <span class="club-category">舞台剧</span>
+                </div>
+                <div class="club-desc">
+                    <p>「一扇门，一方舞台，许多种人生。」</p>
+                    <p>还空着，等你入戏。</p>
+                    <br>
+                    <p>特别合作｜爱简传媒演员部</p>
+                    <p>（优秀成员有机会参与试镜）</p>
+                </div>
+            </div>
+        </div>
+        <!--4.料理 美食美客 -->
+        <div class="club-card">
+            <img class="club-img" src="image/mei.png" alt="社团图标">
+            <div class="club-text">
+                <div class="club-title-row">
+                    <span class="club-name">美食美客</span>
+                    <span class="club-category">料理</span>
+                </div>
+                <div class="club-desc">
+                    <p><span class="en-font">hihi</span>别紧张，我们不是新东方，就是一群嘴馋的人凑一块儿，炒炒经典，搞搞创意。</p>
+                    <p>秀厨艺<span class="en-font">ok</span>的，翻车也<span class="en-font">ok</span>的!</p>
+                    <br>
+                    <p class="club-note">食材供应合作鸣谢：森林小筑</p>
+                </div>
+            </div>
+        </div>
+        <!--5.古玩鉴赏 见物社 -->
+        <div class="club-card">
+            <img class="club-img" src="image/jian.png" alt="社团图标">
+            <div class="club-text">
+                <div class="club-title-row">
+                    <span class="club-name">见物社</span>
+                    <span class="club-category">古玩鉴赏</span>
+                </div>
+                <div class="club-desc">
+                    <p>课余时间倒腾点古玩，喜欢您就来！</p>
+                    <br>
+                    <p class="club-note">定期讲座合作对象：古玩艺术家丁汉白、聂维山</p>
+                </div>
+            </div>
+        </div>
+        <!--6.舞蹈 FLUX 404 -->
+        <div class="club-card">
+            <img class="club-img" src="image/404.png" alt="社团图标">
+            <div class="club-text">
+                <div class="club-title-row">
+                    <span class="club-name">FLUX 404</span>
+                    <span class="club-category">舞蹈</span>
+                </div>
+                <div class="club-desc">
+                    <p>这里是 <span class="en-font">FLUX</span> 404——从 <span class="en-font">K‑Pop</span> 到 <span class="en-font">Urban</span>，从 <span class="en-font">Jazz</span> 到 <span class="en-font">Heels</span>，我们不被风格规训，不被标签定义；不用去复刻正确答案，这里就是你自己的舞台。</p>
+                    <br>
+                    <p>ps. 我们也欢迎零基础学弟学妹们加入，热爱没有门槛，只要你感兴趣，初学者也能找到自己的节拍！</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 学生ID弹窗DOM 放在body末尾 -->
+    <div class="id-modal" id="idModal">
+        <div class="id-card-wrap">
+            <img src="image/studentID.png" alt="Student ID" class="id-card">
+        </div>
+    </div>
+
+    <audio id="bgMusicClub" loop preload="auto">
+        <source src="audio/clubbgm.wav" type="audio/mpeg">
+
+        <audio id="clickSound" preload="auto">
+            <source src="audio/click.mp3" type="audio/mpeg">
+
+
+            <script>
+                //读取本地存储用户名
+                const name = localStorage.getItem("username");
+                document.getElementById("showUsername").innerText = name;
+
+                //社团卡片滚动入场
+                const cards = document.querySelectorAll('.club-card');
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('show');
+                        } else {
+                            entry.target.classList.remove('show');
+                        }
+                    })
+                }, {
+                    threshold: 0
+                });
+                cards.forEach(card => observer.observe(card));
+
+                //背景音乐
+                let clubBgmPlayed = false;
+                document.addEventListener('click', function () {
+                    if (!clubBgmPlayed) {
+                        document.getElementById('bgMusicClub').play();
+                        clubBgmPlayed = true;
+                    }
+                    //点击音效
+                    const clickAudio = document.getElementById('clickSound');
+                    clickAudio.currentTime = 0;
+                    clickAudio.play().catch(err => {
+                        console.log("音效需要用户交互后才能播放", err);
+                    })
+                })
+
+                // ==========学生ID弹窗逻辑 ==========
+                const modal = document.getElementById("idModal");
+                const avatar = document.querySelector(".avatar-icon");
+                //点击头像打开弹窗
+                avatar.addEventListener("click", () => {
+                    modal.classList.add("active");
+                })
+                //点击遮罩背景关闭弹窗
+                modal.addEventListener("click", (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove("active");
+                    }
+                })
+            </script>
+</body>
+</html>

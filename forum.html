@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus forum</title>
+    <link rel="stylesheet" href="forum.css">
+</head>
+<body>
+    <!-- 返回上一页箭头 -->
+    <img class="back-arrow" src="image/back.png" onclick="location.href='index.html'">
+    <div class="profile-header">
+        <img class="header-avatar" src="image/profile.png">
+        <span id="showUsername" class="header-username"></span>
+    </div>
+    <div class="forum-page-wrap">
+        <!-- 左侧：独立滚动讨论区 -->
+        <div class="forum-left-scroll">
+            <!-- 主楼帖子 -->
+            <div class="post-main">
+                <img class="post-avatar" src="image/avatar.png">
+                <div class="post-wrap">
+                    <!-- 标题：独立，在气泡外面！ -->
+                    <div class="post-title">🔥「讨论」社团招新马上开始了，一人一个意见助力我选社团ovo</div>
+                    <!-- 聊天气泡盒子，这里面只放正文 -->
+                    <div class="post-content">
+                        <div class="post-body">
+                            <p>rt 救救选择纠结症</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 1L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar2.png">
+                <div class="floor-text">
+                    <strong>1L:</strong> 那必须是选 CHROMA 啊，你们知不知道他们要放大招，招新海报专门去给凡心学长拍了照片，靓爆了你们懂吗…
+                </div>
+            </div>
+            <!-- 2L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar3.png">
+                <div class="floor-text">
+                    <strong>2L:</strong> 我听说击剑社也有在做这种海报，他们社长叫什么来着，巨帅的玩击剑巨好的那个！
+                </div>
+            </div>
+            <!-- 3L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar4.png">
+                <div class="floor-text">
+                    <strong>3L:</strong> 楼上他们社长叫顾拙言，悄咪咪放下两张招新海报就跑！
+                    <div class="floor-img-group">
+                        <!--帖子里面的图片 -->
+                        <div class="floor-img-group">
+                            <img src="image/poster1.png" class="attach-img preview-img">
+                            <img src="image/poster2.png" class="attach-img preview-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 4L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar5.png">
+                <div class="floor-text">
+                    <strong>4L:</strong> 能不能两个社团都进啊…击剑社绘画社你们联谊吧好吗
+                </div>
+            </div>
+            <!-- 5L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar6.png">
+                <div class="floor-text">
+                    <strong>5L:</strong> 能不能让他俩结婚啊…好配的两张脸…
+                </div>
+            </div>
+            <!-- 6L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar7.png">
+                <div class="floor-text">
+                    <strong>6L:</strong> 能不能让他俩结婚啊…
+                </div>
+            </div>
+            <!-- 7L -->
+            <div class="floor-item">
+                <img class="floor-avatar" src="image/avatar8.png">
+                <div class="floor-text">
+                    <strong>7L:</strong> 能不能让他俩结婚啊…
+                </div>
+            </div>
+            <!-- 自己回复输入区域 -->
+            <div class="reply-box">
+                <textarea id="replyInput" placeholder="在这里输入你的回复..."></textarea>
+                <br>
+                <button id="sendBtn">发送回复</button>
+            </div>
+        </div>
+        <!-- 右侧：固定不动侧边栏 -->
+        <div class="forum-right-fixed">
+            <img class="deco-wing" src="image/wing.png">
+            <div class="side-menu">
+                <div class="side-menu-item">
+                    <img class="side-icon" src="image/saved.png">
+                    <span><span class="menu-zh-font">我的收藏</span>｜Saved</span>
+                </div>
+                <div class="side-menu-item">
+                    <img class="side-icon" src="image/collect.png">
+                    <span><span class="menu-zh-font">收件箱</span>｜Inbox</span>
+                </div>
+                <div class="side-menu-item">
+                    <img class="side-icon" src="image/joined.png">
+                    <span><span class="menu-zh-font">已加入</span>｜Groups</span>
+                </div>
+            </div>
+
+
+            <!-- HOT便签区域 -->
+            <div class="hot-note">
+                <div class="hot-title">#HOT</div>
+                <div class="hot-item">*【投票】你们觉得他俩到底是不是一对</div>
+                <div class="hot-item">*【求助】击剑社社长和绘画社那个……是我想的那样吗</div>
+                <div class="hot-item">*【讨论】yx观察日记 Day 16</div>
+                <div class="hot-item">*【避雷】学校周边租房踩雷记录，给新生一点参考</div>
+                <div class="hot-item">*【讨论】所以今年校庆到底谁来？？</div>
+                <div class="hot-item">*【求助】有没有人知道图书馆空调几点开</div>
+            </div>
+            <img class="deco-note" src="image/corner.png">
+        </div>
+    </div>
+
+    <!-- 大图弹窗 放在body最后面 -->
+    <div class="image-modal" id="imgModal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <!-- =====学生ID弹窗DOM===== -->
+    <div class="id-modal" id="idModal">
+        <div class="id-card-wrap">
+            <img src="image/studentID.png" alt="Student ID" class="id-card">
+        </div>
+    </div>
+
+    <audio id="bgMusicForum" loop preload="auto">
+        <source src="audio/forumbgm.mp3" type="audio/mpeg">
+
+        <audio id="clickSound" preload="auto">
+            <source src="audio/click.mp3" type="audio/mpeg">
+
+
+            <script>
+                //发送回复逻辑
+                const replyInput = document.querySelector("#replyInput");
+                const sendBtn = document.querySelector("#sendBtn");
+                const leftArea = document.querySelector(".forum-left-scroll");
+                sendBtn.onclick = function () {
+                    let text = replyInput.value.trim();
+                    if (!text) {
+                        alert("请输入回复内容！");
+                        return;
+                    }
+                    let newFloor = document.createElement("div");
+                    newFloor.className = "floor-item";
+                    newFloor.innerHTML = `
+                                                    <img class="floor-avatar" src="image/profile.png">
+                                                    <div class="floor-text">
+                                                        <strong>我:</strong> ${text}
+                                                    </div>
+                                                `;
+                    leftArea.insertBefore(newFloor, document.querySelector(".reply-box"));
+                    replyInput.value = "";
+                }
+
+                //读取登录保存的用户名
+                const savedName = localStorage.getItem("username");
+                const nameDom = document.getElementById("showUsername");
+                if (savedName) {
+                    nameDom.innerText = savedName;
+                } else {
+                    nameDom.innerText = "未登录";
+                }
+
+                //BGM
+                let forumBgmPlayed = false;
+                document.addEventListener('click', function () {
+                    if (!forumBgmPlayed) {
+                        document.getElementById('bgMusicForum').play();
+                        forumBgmPlayed = true;
+                    }
+                    //点击音效
+                    const clickAudio = document.getElementById('clickSound');
+                    clickAudio.currentTime = 0;
+                    clickAudio.play().catch(err => {
+                        console.log("音效需要用户交互后才能播放", err);
+                    })
+                });
+
+                //帖子图片预览弹窗
+                const modal = document.getElementById("imgModal");
+                const modalImg = document.getElementById("modalImg");
+                const imgList = document.querySelectorAll(".preview-img");
+                const closeBtn = document.querySelector(".close-btn");
+                imgList.forEach(img => {
+                    img.onclick = function () {
+                        modal.style.display = "block";
+                        modalImg.src = this.src;
+                    }
+                })
+                closeBtn.onclick = function () {
+                    modal.style.display = "none";
+                }
+                modal.onclick = function (e) {
+                    if (e.target === modal) {
+                        modal.style.display = "none";
+                    }
+                }
+
+                // ==========学生ID弹窗逻辑【forum页面头像class是 header‑avatar】 ==========
+                const idModal = document.getElementById("idModal");
+                const avatar = document.querySelector(".header-avatar");
+                avatar.addEventListener("click", () => {
+                    idModal.classList.add("active");
+                })
+                idModal.addEventListener("click", (e) => {
+                    if (e.target === idModal) {
+                        idModal.classList.remove("active");
+                    }
+                })
+            </script>
+</body>
+</html>

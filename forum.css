@@ -1,0 +1,471 @@
+@font-face {
+    font-family: 'Kanaka';
+    src: url('font/Kanaka.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #ffffff;
+    color: #917B5A;
+    font-family: "Comic Sans MS", cursive;
+    overflow: hidden;
+    cursor: url("image/cursor.png"),auto;
+}
+
+/* 返回箭头 */
+.back-arrow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 70px;
+    cursor: pointer;
+    z-index: 99;
+    transition: transform 0.2s ease; /* 开启过渡动画 */
+}
+
+    .back-arrow:hover {
+        transform: scale(1.1) translateY(-3px); /*放大一点，往上飘一点*/
+    }
+
+.profile-header {
+    position: fixed;
+    top: 16px;
+    right: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 999;
+}
+
+.header-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* 圆形棕色描边，和别的页面统一 */
+    border: 3px solid #917B5A;
+}
+
+.header-username {
+    font-size: 18px;
+    color: #917B5A;
+    font-weight: 500;
+}
+
+/* 左右整体容器 */
+.forum-page-wrap {
+    display: flex;
+    height: 100vh;
+}
+
+/* ========== 左侧讨论区 ========== */
+.forum-left-scroll {
+    width: 72%;
+    height: 100%;
+    overflow-y: auto;
+    /* 背景改成单张大图铺满，不重复 */
+    background-image: url("image/forum_bg2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 100px 40px 40px;
+}
+
+/* 主楼帖子：头像独立，内容右侧卡片 */
+.post-main {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.post-avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 3px solid #917B5A; /*新增棕色外圈描边*/
+}
+
+.post-content {
+    flex: 1;
+    background: #fff;
+    /* border: 3px solid #917B5A; 删掉这行硬边框 */
+    border-radius: 18px;
+    padding: 18px 22px;
+    font-size: 18px;
+    line-height: 1.7;
+    box-shadow: 2px 3px 7px rgba(145, 123, 90, 0.22);
+}
+/* 包裹标题+气泡的容器 */
+.post-wrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+/* 标题：气泡框上方，不在白框内 */
+.post-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    /* 标题颜色沿用你网站棕色 #917B5A */
+    color: #917B5A;
+}
+/*聊天气泡盒子，只包裹正文*/
+.post-content {
+    background: #fff;
+    border-radius: 18px;
+    padding: 18px 22px;
+    font-size: 17px;
+    line-height: 1.7;
+    box-shadow: 2px 3px 7px rgba(145, 123, 90, 0.22);
+}
+/*正文*/
+.post-body {
+    line-height: 1.7;
+}
+/* 楼层回复：头像独立，内容右侧卡片 */
+.floor-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.floor-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 3px solid #917B5A; /*新增棕色外圈描边*/
+}
+
+.floor-text {
+    flex: 1;
+    background: #fff;
+    /* border: 3px solid #917B5A; 删掉硬边框 */
+    border-radius: 18px;
+    padding: 16px 20px;
+    line-height: 1.65;
+    font-size: 17px;
+    box-shadow: 2px 3px 7px rgba(145, 123, 90, 0.22);
+}
+
+
+.floor-img-group {
+    margin-top: 8px;
+}
+
+    .floor-img-group a {
+        color: #917B5A;
+        margin-right: 12px;
+        text-decoration: none;
+    }
+
+        .floor-img-group a:hover {
+            text-decoration: underline;
+        }
+
+.attach-img {
+    width: 160px;
+    height: auto;
+    margin-top: 10px;
+    margin-right: 12px;
+    padding: 8px;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 2px 3px 6px rgba(145, 123, 90, 0.22);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+    .attach-img:nth-child(1) {
+        transform: rotate(-2deg);
+    }
+
+    .attach-img:nth-child(2) {
+        transform: rotate(2deg);
+    }
+
+    .attach-img:hover {
+        transform: scale(1.05) rotate(0deg); /*鼠标悬浮摆正回来*/
+    }
+
+
+/* 底部回复输入框 */
+.reply-box {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+#replyInput {
+    width: 100%;
+    min-height: 110px;
+    padding: 14px;
+    font-size: 17px;
+    border: 3px solid #917B5A;
+    border-radius: 12px;
+    background: #fff;
+    color: #917B5A;
+    font-family: "Comic Sans MS", cursive;
+}
+
+#sendBtn {
+    margin-top: 10px;
+    padding: 8px 26px;
+    font-size: 16px;
+    cursor: pointer;
+    background: #fff;
+    border: 3px solid #917B5A;
+    border-radius: 8px;
+    color: #917B5A;
+    font-family: "Comic Sans MS", cursive;
+}
+
+    #sendBtn:hover {
+        background: #917B5A;
+        color: #fff;
+    }
+
+/* ========== 右侧固定白色侧边栏 ========== */
+.forum-right-fixed {
+    width: 28%;
+    height: 100%;
+    /* 删掉原来的白色background:#fff; */
+    background-image: url("image/forum_bg3.png");
+    background-repeat: repeat; /* 平铺，和登录页效果一致 */
+    background-size: auto;
+    padding: 60px 24px 24px;
+    position: relative;
+    overflow-y: auto;
+}
+
+/* 右上角翅膀装饰 */
+.deco-wing {
+    position: absolute;
+    /* 水平居中在侧边栏区域 */
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50px; /* 距离侧边栏顶部距离，和上面margin-top配合 */
+    width: 160px;
+    height: auto;
+    z-index: 2; /* 保证爱心在背景上层，不会被盖住，但低于右上角头像，防止重叠 */
+    animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(-50%);
+    }
+
+    50% {
+        transform: translateY(-6px) translateX(-50%);
+    }
+
+    100% {
+        transform: translateY(0) translateX(-50%);
+    }
+}
+
+/* 右侧功能列表：不要框，只保留图标+文字 */
+.side-menu {
+    margin-bottom: 30px;
+    margin-top: 80px;
+}
+
+.side-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 14px 0;
+    font-size: 17px;
+}
+
+.side-icon {
+    width: 36px;
+    height: 36px;
+}
+
+/* 侧边栏三个菜单中文使用 Kanaka 圆润字体，英文保留原有字体 */
+.menu-zh-font {
+    font-family: 'Kanaka', "Comic Sans MS", sans-serif;
+    font-weight: normal !important;
+    font-size: 17px;
+    color: #917B5A;
+}
+
+
+
+/* HOT便签：白色底，棕色边框，棕色胶带 */
+.hot-note {
+    background: #FCFCF5;
+    border: 3px solid #917B5A;
+    border-radius: 12px;
+    padding: 28px 20px 20px;
+    position: relative;
+}
+
+    /* 棕色胶带 */
+    .hot-note::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 22px;
+        background: #F2CBDB;
+        opacity: 0.8;
+    }
+
+.hot-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 14px;
+}
+
+.hot-item {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+
+/* 右下角低音谱号装饰 */
+.deco-note {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+}
+
+/* ========== 滚动条 ========== */
+.forum-left-scroll::-webkit-scrollbar {
+    width: 16px;
+}
+
+.forum-left-scroll::-webkit-scrollbar-track {
+    background: #fff7f9;
+}
+
+.forum-left-scroll::-webkit-scrollbar-thumb {
+    background-color: #A18970; /* 粉色→主题棕色 */
+    border-radius: 10px;
+}
+
+    .forum-left-scroll::-webkit-scrollbar-thumb:hover {
+        background-color: #7c6a4e; /* hover更深一点的棕色 */
+    }
+
+.forum-right-fixed::-webkit-scrollbar {
+    width: 10px;
+}
+
+.forum-right-fixed::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+.forum-right-fixed::-webkit-scrollbar-thumb {
+    background: #917B5A;
+    border-radius: 10px;
+}
+
+/*弹窗遮罩背景*/
+.image-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+}
+/*弹窗大图*/
+.modal-content {
+    display: block;
+    max-width: 85%;
+    max-height: 85vh;
+    margin: 40px auto;
+    border-radius: 8px;
+    object-fit: contain;
+}
+/*关闭按钮*/
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+    .close-btn:hover {
+        color: #917B5A;
+    }
+/*====学生ID弹窗样式====*/
+.id-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(50, 35, 25, 0.65);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+    .id-modal.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.id-card-wrap {
+    transform: scale(0.6);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.3, 1.8, 0.5, 1), opacity 0.3s ease;
+}
+
+.id-modal.active .id-card-wrap {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.id-card {
+    max-width: 640px;
+    width: 86vw;
+    border-radius: 18px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+    .id-card:hover {
+        transform: translateY(-4px);
+        transition: transform 0.25s ease;
+    }
+
+/* 移动端适配 */
+@media (max-width: 900px) {
+    .forum-page-wrap {
+        flex-direction: column;
+        height: auto;
+        overflow: auto;
+    }
+
+    .forum-left-scroll,
+    .forum-right-fixed {
+        width: 100%;
+        height: auto;
+    }
+
+    .forum-right-fixed {
+        padding-top: 80px;
+    }
+}

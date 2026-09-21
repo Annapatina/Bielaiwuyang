@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <!--全屏平铺背景层-->
+    <div class="bg-pattern"></div>
+
+    <div class="login-card">
+        <!--粉色夹子装饰-->
+        <div class="clip-decoration">
+            <img src="image/clip.png" alt="夹子">
+        </div>
+        <div class="title">AJU</div>
+        <div class="form-item">
+            <label>ID :</label>
+            <input id="inputId" type="text">
+        </div>
+        <div class="form-item">
+            <label>password:</label>
+            <input id="inputPwd" type="password">
+        </div>
+        <button class="login-btn" id="loginBtn">login</button>
+    </div>
+    <div class="side-pic"></div>
+
+    <!--登录逻辑脚本-->
+    <script>
+        const loginBtn = document.getElementById("loginBtn");
+        const inputId = document.getElementById("inputId");
+        const inputPwd = document.getElementById("inputPwd");
+        loginBtn.addEventListener("click", () => {
+            const username = inputId.value.trim();
+            const password = inputPwd.value.trim();
+            if (username === "") {
+                alert("请先输入您的ID！");
+                return;
+            }
+            if (password === "") {
+                alert("请输入密码！");
+                return;
+            }
+            localStorage.setItem("username", username);
+            window.location.href = "index.html";
+        })
+    </script>
+
+    <!--audio必须闭合！script全部放到audio外面！！修复音效bug-->
+    <audio id="clickSound" preload="auto">
+        <source src="audio/click.mp3" type="audio/mpeg">
+
+        <script>
+            const clickAudio = document.getElementById('clickSound');
+            document.addEventListener('click', function () {
+                clickAudio.currentTime = 0;
+                clickAudio.play().catch(err => {
+                    console.log("音效需要用户交互后才能播放", err);
+                })
+            })
+        </script>
+</body>
+</html>
