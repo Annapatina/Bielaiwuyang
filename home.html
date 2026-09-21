@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="home-page">
+    <!--右上角用户头像+名字-->
+    <div class="user-header">
+        <div class="avatar-icon"></div>
+        <span id="showUsername"></span>
+    </div>
+    <!-- 文本版学校标题（Snowburst One字体+白色描边） -->
+    <div class="home-title-text">
+        <h1 class="uni-title">AiJian University</h1>
+    </div>
+    <!--四个角落装饰元素-->
+    <div class="decor top-left"><img src="image/rabbit.png" alt="兔子"></div>
+    <div class="decor top-right"><img src="image/dog.png" alt="小狗"></div>
+    <div class="decor bottom-left"><img src="image/music.png" alt="音符"></div>
+    <div class="decor bottom-right"><img src="image/key.png" alt="钥匙"></div>
+    <!--小星星-->
+    <img class="star1" src="image/star1.png">
+    <img class="star2" src="image/star2.png">
+    <!--三个爱心按钮容器-->
+    <div class="heart-container">
+        <a href="files/社团申请表.zip" download="社团申请表.zip" class="heart-btn apply-btn">
+            <!-- hover出来的预览弹窗 -->
+            apply
+            <span class="cn-text">申请</span>
+        </a>
+        <a href="club.html" class="heart-btn">
+            About the club
+            <span class="cn-text">关于社团</span>
+        </a>
+        <a href="forum.html" class="heart-btn">
+            Campus forum
+            <span class="cn-text">校园论坛</span>
+        </a>
+        <!--弹窗放到heart‑container的外面！！-->
+        <div class="preview-popup">
+            <img src="image/test.png" alt="申请表预览">
+        </div>
+    </div>
+    <!--底部back按钮，替换成png图片-->
+    <div class="back-button">
+        <a href="login.html">
+            <img src="image/back.png" alt="back返回">
+        </a>
+    </div>
+    <!-- 头像弹窗遮罩层 -->
+    <div class="id-modal" id="idModal">
+        <div class="id-card-wrap">
+            <img src="image/studentID.png" alt="Student ID" class="id-card">
+        </div>
+    </div>
+
+    <!-- ✅全部script全部移到audio外面，body最末尾 -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="audio/indexbgm.mp3" type="audio/mpeg">
+
+        <audio id="clickSound" preload="auto">
+            <source src="audio/click.mp3" type="audio/mpeg">
+
+
+            <script>
+                //读取登录用户名
+                const name = localStorage.getItem("username");
+                document.getElementById("showUsername").innerText = name;
+
+                //申请表hover预览
+                const btn = document.querySelector('.apply-btn');
+                const popup = document.querySelector('.preview-popup');
+                btn.addEventListener('mousemove', (e) => {
+                    popup.style.left = (e.pageX + 15) + 'px';
+                    popup.style.top = (e.pageY + 15) + 'px';
+                })
+                btn.addEventListener('mouseenter', () => {
+                    popup.style.opacity = '1';
+                })
+                btn.addEventListener('mouseleave', () => {
+                    popup.style.opacity = '0';
+                })
+
+                //背景音乐
+                let played = false;
+                document.addEventListener('click', function () {
+                    if (!played) {
+                        document.getElementById('bgMusic').play();
+                        played = true;
+                    }
+                    //点击音效
+                    const clickAudio = document.getElementById('clickSound');
+                    clickAudio.currentTime = 0;
+                    clickAudio.play().catch(err => {
+                        console.log("音效需要用户交互后才能播放", err);
+                    })
+                })
+
+                // ========== 学生ID弹窗逻辑【修复选择器！】 ==========
+                const modal = document.getElementById("idModal");
+                // ✅头像class是 .avatar-icon，不是.profile-avatar
+                const avatar = document.querySelector(".avatar-icon");
+
+                //点击头像打开弹窗
+                avatar.addEventListener("click", () => {
+                    modal.classList.add("active");
+                })
+                //点击遮罩背景关闭弹窗
+                modal.addEventListener("click", (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove("active");
+                    }
+                })
+            </script>
+
+</body>
+</html>
